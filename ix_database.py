@@ -34,7 +34,7 @@ WebDriverWait(driver, 20).until(
 last_height = driver.execute_script("return document.body.scrollHeight")
 while True:
     driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-    time.sleep(2)
+    time.sleep(1)
     new_height = driver.execute_script("return document.body.scrollHeight")
     if new_height == last_height:
         break
