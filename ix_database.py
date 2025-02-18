@@ -17,9 +17,9 @@ driver = webdriver.Chrome(
     options=options
 )
 
-ROWS_PER_PAGE = 25
+ROWS_PER_PAGE = 100
 PAGE_NUMBER = 1
-QUERY = "artificial intelligence"
+QUERY = '("Startup" OR "Entrepreneurship" OR "New Venture" OR "Business Innovation" OR "Tech Startup" OR "Emerging Business") AND ("Chatbot" OR "Conversational Agent" OR "Virtual Assistant" OR "Dialogue System" OR "Generative AI" OR "Artificial Intelligence" OR "LLM" OR "Machine Learning") AND ("Trends" OR "Future Directions" OR "Emerging Technologies" OR "Innovations" OR "Market Analysis" OR "Adoption Patterns" OR "Industry Evolution")'
 
 url = f"https://ieeexplore.ieee.org/search/searchresult.jsp?queryText={QUERY}&highlight=true&matchPubs=true&returnFacets=ALL&returnType=SEARCH&rowsPerPage={ROWS_PER_PAGE}&pageNumber={PAGE_NUMBER}"	
 
@@ -106,7 +106,7 @@ for result in results:
 driver.quit()
 
 # Guardar en CSV
-with open('dataset_ieee.csv', 'w', newline='', encoding='utf-8') as csvfile:
+with open('ieeexplore.csv', 'w', newline='', encoding='utf-8') as csvfile:
     fieldnames = ['title', 'authors', 'doi', 'pdf', 'abstract']
     writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
     

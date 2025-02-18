@@ -24,11 +24,15 @@ stealth(driver,
 )
 
 driver.get("https://www.sciencedirect.com/")
-
 try:
-    search_query = '("Startup" OR "Entrepreneurship") AND ("Chatbot" OR "Generative AI") AND "Trends" NOT ("Healthcare" OR "Finance")'
-    full_url = f"https://www.sciencedirect.com/search?qs={search_query}&show=25"
-    driver.get(full_url)
+    startup_terms = '"Startup" OR "Entrepreneurship"'
+    ai_terms = '"Chatbot" OR "Conversational Agent" OR "GAI"'
+    trend_terms = '"Emerging Technologies" OR "Innovations"'
+    article_type = "FLA"
+    years = "2025,2024"
+
+    url = f"https://www.sciencedirect.com/search?qs=({startup_terms}) AND ({ai_terms}) AND ({trend_terms})&articleTypes={article_type}&lastSelectedFacet=years&years={years}&show=100"
+    driver.get(url)
     time.sleep(5)
 
     articles = driver.find_elements(By.CSS_SELECTOR, "ol.search-result-wrapper li.ResultItem")
@@ -73,7 +77,7 @@ try:
             print(f"Error extrayendo artículo: {e}")
 
     # Guardar en CSV con nuevo campo Abstract
-    csv_file = "articulos.csv"
+    csv_file = "sciencedirect.csv"
     headers = ["Título", "DOI", "Año", "Revista", "Autores", "PDF", "Abstract"]
     
     with open(csv_file, "w", newline="", encoding="utf-8") as file:
